@@ -28,4 +28,24 @@
             p:prefix="/WEB-INF/jsp/"
             p:suffix=".jsp"/>
 
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+          p:defaultEncoding="utf-8" />
+
+    <bean id="messageSource"
+          class="org.springframework.context.support.ResourceBundleMessageSource"
+          p:basename="i18n/messages" />
+
+    <!--WEB异常解析处理-->
+    <bean id="exceptionResolver" class="com.nextrip.exception.handler.NextripHandlerExceptionResolver">
+        <property name="defaultErrorView">
+            <value>fail</value>
+        </property>
+        <property name="exceptionMappings">
+            <props>
+                <prop key="java.lang.RuntimeException">fail</prop>
+            </props>
+        </property>
+    </bean>
+
 </beans>
